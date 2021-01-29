@@ -38,7 +38,7 @@ exports.login = (req, res) => {
                       expiresIn: "1h"
                   }
                 );
-
+                
                 const user_data = {
                   userId : data.id,
                   role : data.ntl_user_role.role_name,
@@ -48,9 +48,7 @@ exports.login = (req, res) => {
                 }
                 
                 req.session.userdata = user_data;
-             
-                // var redirectionUrl = req.session.redirectUrl || '/api/vacancy_category';
-                var redirectionUrl = req.session.redirectUrl || '/dashboard';
+                var redirectionUrl = req.session.redirectUrl || '/admin/dashboard';
                 return res.redirect(redirectionUrl);
                 // return res.status(200).json({
                 //   message: "Auth successful",

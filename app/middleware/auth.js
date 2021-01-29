@@ -29,26 +29,17 @@ module.exports.checkPermission = function (action) {
       var permissionList = module.exports.allPermissions(userdata);
       req.session.permission = permissionList;      
     }
-    console.log(permissionList);
-    permission = req.originalUrl;
+    //console.log(permissionList);   
+    permission = req._parsedOriginalUrl.pathname;
     if(action){
-      permission = req.originalUrl+'/'+action;    }
-    // var permissionList = module.exports.allPermissions(userdata);
+      // permission = req._parsedOriginalUrl.pathname+'/'+action;   
+      permission = req._parsedUrl.pathname+'/'+action;  
+    }
       if (permissionList.includes(permission)){
         next(); 
       } else {
         res.status(403).json({message: 'Forbidden. You are not authorized to access this page.'}); 
       }
-
-
-
-
-
-
-
-
-
-
   }  
 }
 
@@ -56,17 +47,12 @@ module.exports.checkPermission = function (action) {
 module.exports.allPermissions = function (userdata) {
   var arr = [];
   const a = JSON.parse(userdata.permission);
-  Object.keys(a).forEach(function (key){
-      
-      a[key].forEach(function (action){       
-        
+  Object.keys(a).forEach(function (key){      
+      a[key].forEach(function (action){ 
         arr.push('/'+key+'/'+action);
-        
-        
       });
   });
-  return arr;
-  
+  return arr;  
 }
 
 

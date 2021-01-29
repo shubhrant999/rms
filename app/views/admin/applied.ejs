@@ -1,0 +1,673 @@
+<%- include('layout/header'); -%>
+    <%- include('layout/sidebar'); -%>
+        <div class="page-content-wrapper mt-0">            
+            <div class="page-content-wrapper-inner">
+                <div class="content-viewport">
+
+                    <div class="grid">
+                        <div class="grid-body p-0">
+                            <h2 class="grid-title">Serach Filter</h2>
+                            <div class="item-wrapper">
+                                <div class="accordion accordion-color-filled" id="accordion-5" role="tablist">
+                                    <div class="card card-bg-info" style="box-shadow: none;">
+                                        <div class="card-header" role="tab" id="heading-5-1">
+                                            <a id="filter-accordian" data-toggle="collapse" href="#collapse-5-1" 
+                                            aria-expanded="false" aria-controls="collapse-5-1" class="collapsed">
+                                                <i class="header-icon mdi mdi-magnify"></i>Search Filter</a></div>
+                                        <div id="collapse-5-1" class="collapse" role="tabpanel" aria-labelledby="heading-5-1"
+                                            data-parent="#accordion-5">
+                                            <div class="col-md-12 py-3 mx-auto">
+                                            <form class="filterForm" id="filterForm" name="filterForm" action="" method="POST">
+                                            <div class="form-group row">
+                                                <div class="col"><label for="start-date-field">Start Date</label>
+                                                    <div class="input-group">
+                                                        <input name="start_date" value="<%= option.req.start_date %>" type="text" id="start-date-field" class="form-control enable-mask date-mask" placeholder="DD/MM/YYYY" maxlength="10">
+                                                    </div>
+                                                </div>
+                                                <div class="col"><label for="end-date-field">End Date</label>
+                                                    <div class="input-group">
+                                                        <input name="end_date" value="<%= option.req.end_date %>" type="text" id="end-date-field" class="form-control enable-mask date-mask" placeholder="DD/MM/YYYY" maxlength="10">                                            
+                                                    </div>
+                                                </div>
+                                                <div class="col"><label for="mobiled">Application No.</label>
+                                                    <div class="input-group">
+                                                        <input name="appl_no" value="<%= option.req.appl_no %>" type="text" id="mobile" class="form-control" placeholder="Application No." maxlength="10">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="Email">Email</label>
+                                                    <input name="email" value="<%= option.req.email %>" type="email" class="form-control" id="Email" placeholder="Email">                                        
+                                                </div>
+                                                <div class="col">
+                                                    <label for="aadhaar">Aadhaar No.</label>
+                                                    <input name="aadhaar" value="<%= option.req.aadhaar %>" type="text" class="form-control" id="aadhaar" placeholder="Aaadhar">
+                                                    
+                                                </div>                    
+                                            </div>   
+                                            <div class="form-group row">                                  
+                                                <div class="col"><label for="mobiled">Mobile</label>
+                                                    <div class="input-group">
+                                                        <input name="mobile" value="<%= option.req.mobile %>" type="text" id="mobile" class="form-control" placeholder="Mobile" maxlength="10">
+                                                    </div>
+                                                </div>
+                                                <div class="col showcase_content_area">
+                                                    <label for="mobiled">Gender</label>
+                                                    <select name="gender" class="custom-select">
+                                                        <option value="-1" >Choose gender </option>
+                                                        <option value="male" <% if(option.req.gender == 'male'){ %> selected <% } %> >Male</option>
+                                                        <option value="female" <% if(option.req.gender == 'female'){ %> selected <% } %>>Female</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col"><label for="state">State</label>
+                                                    <div class="input-group">
+                                                        <input name="state" value="<%= option.req.state %>" type="text" id="state" class="form-control" placeholder="State">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="City">City</label>
+                                                    <input name="city" type="text" value="<%= option.req.city %>" class="form-control" id="City" placeholder="City">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="Location">Location</label>
+                                                    <input name="location" type="text" value="<%= option.req.location %>" class="form-control" id="location" placeholder="Location">
+                                            
+                                                </div>
+                                            </div>
+                                            
+                                            <input class="btn btn btn-secondary" id="resetBtn" type="button" onclick="window.location.href = window.location.href;" value="Reset">
+                                            
+                                            <button class="btn btn-primary" type="submit">Submit</button>                                         
+                                            
+                                            </form>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12" id="msgs"></div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+<!-- 
+                    <div class="grid">
+                        <div class="grid-body">
+                            <div class="item-wrapper">
+                                <div class="row">
+                                    <div class="py-5 mx-auto">
+                                        <form class="forms-sample" _lpchecked="1" action="/admin/applied" method="POST">
+                                            <div class="form-group row">
+                                                <div class="col"><label for="start-date-field">Start Date</label>
+                                                    <div class="input-group">
+                                                        <input name="start_date" value="<%= option.req.start_date %>" type="text" id="start-date-field" class="form-control enable-mask date-mask" placeholder="DD/MM/YYYY" maxlength="10">
+                                                    </div>
+                                                </div>
+                                                <div class="col"><label for="end-date-field">End Date</label>
+                                                    <div class="input-group">
+                                                        <input name="end_date" value="<%= option.req.end_date %>" type="text" id="end-date-field" class="form-control enable-mask date-mask" placeholder="DD/MM/YYYY" maxlength="10">                                            
+                                                    </div>
+                                                </div>
+                                                <div class="col"><label for="mobiled">Application No.</label>
+                                                    <div class="input-group">
+                                                        <input name="appl_no" value="<%= option.req.appl_no %>" type="text" id="mobile" class="form-control" placeholder="Application No." maxlength="10">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="Email">Email</label>
+                                                    <input name="email" value="<%= option.req.email %>" type="email" class="form-control" id="Email" placeholder="Email">                                        
+                                                </div>
+                                                <div class="col">
+                                                    <label for="aadhaar">Aadhaar No.</label>
+                                                    <input name="aadhaar" value="<%= option.req.aadhaar %>" type="text" class="form-control" id="aadhaar" placeholder="Aaadhar">
+                                                    
+                                                </div>                    
+                                            </div>   
+                                            <div class="form-group row">                                  
+                                                <div class="col"><label for="mobiled">Mobile</label>
+                                                    <div class="input-group">
+                                                        <input name="mobile" value="<%= option.req.mobile %>" type="text" id="mobile" class="form-control" placeholder="Mobile" maxlength="10">
+                                                    </div>
+                                                </div>
+                                                <div class="col showcase_content_area">
+                                                    <label for="mobiled">Gender</label>
+                                                    <select name="gender" class="custom-select">
+                                                        <option value="-1" >Choose gender </option>
+                                                        <option value="male" <% if(option.req.gender == 'male'){ %> selected <% } %> >Male</option>
+                                                        <option value="female" <% if(option.req.gender == 'female'){ %> selected <% } %>>Female</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col"><label for="state">State</label>
+                                                    <div class="input-group">
+                                                        <input name="state" type="text" id="state" class="form-control" placeholder="State">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="City">City</label>
+                                                    <input name="city" type="email" class="form-control" id="City" placeholder="City">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="Location">Location</label>
+                                                    <input name="location" type="text" class="form-control" id="location" placeholder="Location">
+                                            
+                                                </div>
+                                            </div>
+                                            
+                                                <button class="btn btn btn-secondary" type="button">Reset</button>
+                                                <button class="btn btn-primary" type="submit">Submit</button>
+                                            
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" id="msgs"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="grid">
+                                <p class="grid-header"><%= option.currentStage %> Application</p>
+                                <div class="item-wrapper">
+                                    <div class="table-responsive">
+                                        <!-- <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile</th>
+                                                    <th>Aadhaar</th>
+                                                    <th>Gender</th>
+                                                    <th>DOB</th>
+                                                    <th>Age</th>                                                   
+                                                    <th>Preferred Location </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(data.length> 0){ %>                                                
+                                                    <% data.forEach( (appl)=> { %>
+                                                    <tr id="<%= appl.id %>">
+                                                        <td><%= appl.ntl_applicant.id+1000 %></td>
+                                                        <td class="applicant-name"><%= appl.ntl_applicant.name %></td>
+                                                        <td><%= appl.ntl_applicant.email %></td>
+                                                        <td><%= appl.ntl_applicant.phone %></td>
+                                                        <td><%= appl.ntl_applicant.aadhaar %></td>
+                                                        <td><%= appl.ntl_applicant.gender %></td>
+                                                        
+                                                        <td><%= appl.ntl_applicant.dob %></td>
+                                                        <td><%= getAge(appl.ntl_applicant.dob) %></td>
+
+                                                        <td><%= appl.ntl_applicant.preferred_location %></td>
+                                                        
+                                                        <% if(typeof option.nextStage !== 'undefined') {%>
+                                                        <td><button type="button" class="btn btn-success has-icon btn-rounded btn-xs action-btn-row" data-toggle="modal"
+                                                            data-target="#header-filled-success-modal" data-id="<%= appl.id %>" data-status="<%= option.status %>"
+                                                            ><i class="mdi mdi-account-plus"></i> <%= option.nextStage  %></button></td>                                                          
+                                                        <% } %>
+                                                        <% if(option.permission.includes(option.path+'/hold')) {%>
+                                                        <td>                                                        
+                                                            <button type="button" class="btn btn-info has-icon btn-rounded btn-xs hold-btn-row" data-toggle="modal"
+                                                                data-target="#header-filled-hold-modal" data-id="<%= appl.id %>" data-status="1"><i
+                                                                    class="mdi mdi-pause-octagon"></i> Hold</button>
+                                                        </td>
+                                                        <% } %> -->
+                                                        
+                                                        <!-- <td>
+                                                            <button type="button" class="btn btn-info has-icon btn-rounded btn-xs" data-toggle="modal"
+                                                                data-target="#header-filled-edit-modal" data-id="<%= appl.id %>" data-status="1"><i
+                                                                    class="mdi mdi-pencil-box"></i> Edit</button>
+                                                        </td> -->
+                                                        <!-- <td>
+                                                            <button type="button" class="btn btn-info has-icon btn-rounded btn-xs" data-toggle="modal"
+                                                                data-target="#header-filled-edit-modal" data-id="<%= appl.id %>" data-status="1"><i
+                                                                    class="mdi mdi-comment-processing-outline"></i> Comment</button>
+                                                        </td>-->
+
+                                                        <!-- <% if(option.permission.includes(option.path+'/delete')) {%>
+                                                            <td>                                                    
+                                                                <button type="button" class="btn btn-danger has-icon btn-rounded btn-xs reject-btn-row" data-toggle="modal"
+                                                                    data-target="#header-filled-reject-modal" data-id="<%= appl.id %>" data-status="1"><i
+                                                                        class="mdi mdi-delete"></i> Reject</button>
+                                                            </td> 
+                                                        <% } %>
+                                                    </tr>
+                                                    <% }); %>                                                
+                                                <% }else{ %>
+                                                    <tr><td>No Records Found</td></tr>
+                                                <% } %>
+                                            </tbody>
+                                        </table> -->
+                                        <table id="dtable" class="data-table table dataTable no-footer" role="grid" aria-describedby="complex-header-table_info"
+                                            style="width: 1005px;">
+                                            <thead>
+                                                <!-- <tr class="header-grouping-label" role="row">
+                                                                                            <th rowspan="1" colspan="1"></th>
+                                                                                            <th colspan="2" rowspan="1"></th>
+                                                                                            <th colspan="3" rowspan="1"></th>
+                                                                                            <th colspan="3" rowspan="1"></th>
+                                                                                            <th colspan="3" rowspan="1">Action</th>
+                                                                                        </tr> -->
+                                                <tr role="row">
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile</th>
+                                                    <th>Aadhaar</th>
+                                                    <th>Gender</th>
+                                                    <th>DOB</th>
+                                                    <th>Age</th>
+                                                    <th>Preferred Location </th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                        
+                                            <tbody>
+                                        
+                                                <% if(data.length> 0){ %>
+                                                    <% data.forEach( (appl)=> { %>
+                                                        <tr id="<%= appl.id %>">
+                                                            <td>
+                                                                <%= appl.ntl_applicant.id+1000 %>
+                                                            </td>
+                                                            <td class="applicant-name">
+                                                                <%= appl.ntl_applicant.name %>
+                                                            </td>
+                                                            <td>
+                                                                <%= appl.ntl_applicant.email %>
+                                                            </td>
+                                                            <td>
+                                                                <%= appl.ntl_applicant.phone %>
+                                                            </td>
+                                                            <td>
+                                                                <%= appl.ntl_applicant.aadhaar %>
+                                                            </td>
+                                                            <td>
+                                                                <%= appl.ntl_applicant.gender %>
+                                                            </td>
+                                        
+                                                            <td>
+                                                                <%= appl.ntl_applicant.dob %>
+                                                            </td>
+                                                            <td>
+                                                                <%= getAge(appl.ntl_applicant.dob) %>
+                                                            </td>
+                                        
+                                                            <td>
+                                                                <%= appl.ntl_applicant.preferred_location %>
+                                                            </td>
+                                                            
+                                                            <td>
+                                                                <button type="button" class="btn btn-info has-icon btn-rounded btn-xs edit-btn-row" data-toggle="modal"
+                                                                   data-id="<%= appl.id %>" data-status="1"><i
+                                                                        class="mdi mdi-pencil-box"></i> Edit</button>
+                                                            </td>
+
+
+                                                            <% if(typeof option.nextStage !=='undefined' ) {%>
+                                                                <td><button type="button" class="btn btn-success has-icon btn-rounded btn-xs action-btn-row"
+                                                                        data-toggle="modal" data-target="#header-filled-success-modal" data-id="<%= appl.id %>"
+                                                                        data-status="<%= option.status %>"><i class="mdi mdi-account-plus"></i>
+                                                                        <%= option.nextStage %>
+                                                                    </button>
+                                                                </td>
+                                                            <% } %>
+                                                                    <% if(option.permission.includes(option.path+'/hold')) {%>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-info has-icon btn-rounded btn-xs hold-btn-row"
+                                                                                data-toggle="modal" data-target="#header-filled-hold-modal"
+                                                                                data-id="<%= appl.id %>" data-status="1"><i class="mdi mdi-pause-octagon"></i>
+                                                                                Hold</button>
+                                                                        </td>
+                                                                        <% } %>
+                                        
+                                        
+                                                                            <% if(option.permission.includes(option.path+'/delete')) {%>
+                                                                                <td>
+                                                                                    <button type="button"
+                                                                                        class="btn btn-danger has-icon btn-rounded btn-xs reject-btn-row"
+                                                                                        data-toggle="modal" data-target="#header-filled-reject-modal"
+                                                                                        data-id="<%= appl.id %>" data-status="1"><i class="mdi mdi-delete"></i>
+                                                                                        Reject</button>
+                                                                                </td>
+                                                                                <% } %>
+                                                        </tr>
+                                                        <% }); %>
+                                                            <% } %>
+                                        
+                                        
+                                        
+                                        
+                                            </tbody>
+                                        </table>
+                                      
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-lg-12">
+                            <div class="grid float-right">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>                                       
+
+                                        <li class="page-item  <%if (page==1) { %>active <% } %>"><a class="page-link" href="applied">1</a></li>
+                                        <li class="page-item <%if (page==2) { %> active <% } %>">
+                                        <a class="page-link" href="applied?page=2">2 <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="page-item <%if (page==3) { %> active <% } %>"><a class="page-link" href="applied?page=3">3</a></li>
+                                        <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+                
+            </div>   
+            <!-- Select Modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="header-filled-success-modal" style="display: none;"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 class="modal-title text-white">Change Application Status</h4><button type="button" class="close text-white"
+                                data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex flex-column justify-content-center align-items-center"><i
+                                    class="mdi mdi-flag mdi-6x text-success"></i>
+                                <h4 class="text-black font-weight-medium mb-4">Move to <%= option.nextStage %> Stage ?</h4>
+                                <p>Do you want to move this application to <%= option.nextStage %> Stage ?</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-link text-black component-flat"
+                                data-dismiss="modal">Close</button> 
+                            <button type="button" id="actionbt" class="btn btn-success btn-sm btn-action">Yes</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit modal -->
+            <div id="editUsers_popup">
+
+            </div>
+
+            <!-- On-Hold modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="header-filled-hold-modal" style="display: none;"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h4 class="modal-title text-white">Change Application Status to On-Hold</h4><button type="button"
+                                class="close text-white" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex flex-column justify-content-center align-items-center"><i
+                                    class="mdi mdi-flag mdi-6x text-success"></i>
+                                <h4 class="text-black font-weight-medium mb-4">Move to On-Hold Stage ?</h4>
+                                <p>Do you want to move this application to On-Hold Stage ?</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-link text-black component-flat"
+                                data-dismiss="modal">Close</button>
+                            <button type="button" id="holdbt" class="btn btn-success btn-sm btn-hold">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reject modal -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="header-filled-reject-modal" style="display: none;"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title text-white">Change Application Status to Reject</h4><button type="button" class="close text-white"
+                                data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex flex-column justify-content-center align-items-center"><i
+                                    class="mdi mdi-delete mdi-6x text-danger"></i>
+                                <h4 class="text-black font-weight-medium mb-4">Reject Aplication !</h4>
+                                <p class="text-center">Move to Reject stage, do you really want to continue ?</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-link text-black component-flat" data-dismiss="modal">Dismiss</button> 
+                            <button type="button" id="rejectbt" class="btn btn-danger btn-sm btn-reject">Yes, Continue</button></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- content viewport ends -->
+            <%- include('layout/footer'); -%>   
+            <script>
+                $(function () {
+                    $('#dtable').DataTable({
+                        paging: true,
+                        pageLength: 2,
+                        searching: false,
+                        lengthChange: false,
+                        info: false,
+                    });
+                    var reqType = '<%= option.requestType %>';
+                    console.log(reqType);
+                    if(reqType == 'POST'){
+                        $("#filter-accordian").removeClass('collapsed');
+                        $("#filter-accordian").attr("aria-expanded", "true");
+                        $("#collapse-5-1").addClass("show");
+                    }
+
+                    $('.action-btn-row').on('click', function () {
+                        var dataId = $(this).attr('data-id');
+                        $(".modal-footer #actionbt").attr('data-id', dataId);                              
+                    });
+
+                    $('.hold-btn-row').on('click', function () {
+                        var dataId = $(this).attr('data-id');
+                        $(".modal-footer #holdbt").attr('data-id', dataId);
+                    });
+
+                    $('.reject-btn-row').on('click', function () {
+                        var dataId = $(this).attr('data-id');
+                        $(".modal-footer #rejectbt").attr('data-id', dataId);
+                    });
+
+                    $('.edit-btn-row').on('click', function () {
+                        var dataId = $(this).attr('data-id'); 
+                        event.preventDefault();
+                        if (dataId) {
+                            $.ajax({
+                                type: 'POST',
+                                url: "get_edit_detail",
+                                data: { id: dataId },
+                                success: function (response) {                                   
+                                    if (response) {
+                                        $('#editUsers_popup').html(response);
+                                        $('#header-filled-edit-modal').modal('show');
+                                    }
+                                }
+                            });
+                        } else {
+                            alert('Try Again');
+                        }
+                    });
+
+
+
+                
+                    $('.btn-hold').on('click', function () {
+                        var candidate_name = $(this).parent().siblings(".applicant-name").text();
+                        var id = $(this).attr('data-id');
+                        var $tr = $("#"+id);   
+                        var appr_reject = 5;                
+                        var stage = 6;                        
+                        if (id) {
+                            $.ajax({
+                                type: 'POST',
+                                url: "shortlisted/change_status",
+                                data:  { id: id, appr_reject: appr_reject, stage:stage },
+                                dataType: 'json',
+                                success: function (response) {                                  
+                                    console.log(response.type); 
+                                    if (response.type == "error") {
+                                        $('#msgs').html("<div class='alert alert-danger'>" + response.msg + "</div>");
+                                    } else {
+                                        $('#msgs').html("<div class='alert alert-success dismissible-alert' role='alert'><b>"+response.msg + 
+                                            "</b> <i class= 'alert-close mdi mdi-close float-right'></i ></div >");                                        
+                                    }       
+                                    $('#header-filled-hold-modal').modal('toggle');
+                                    $tr.remove();                                        
+                                    $(".alert").delay(5000).fadeOut(800); 
+                                    // $(".alert").fadeTo(5000, 2000).slideUp(5000, function () {
+                                    //     $(".alert").slideUp(5000);
+                                    // });
+
+                                }
+                            });                            
+                        }
+                    });
+
+                    $('.btn-reject').on('click', function () {
+                        console.log('here');
+                        var candidate_name = $(this).parent().siblings(".applicant-name").text();
+                        var id = $(this).attr('data-id');
+                        var $tr = $("#" + id);
+                        var appr_reject = 2;
+                        var stage = 5;
+                        if (id) {
+                            $.ajax({
+                                type: 'POST',
+                                url: "shortlisted/change_status",
+                                data: { id: id, appr_reject: appr_reject, stage: stage },
+                                dataType: 'json',
+                                success: function (response) {
+                                    console.log(response.type);
+                                    if (response.type == "error") {
+                                        $('#msgs').html("<div class='alert alert-danger'>" + response.msg + "</div>");
+                                    } else {
+                                        $('#msgs').html("<div class='alert alert-success dismissible-alert' role='alert'><b>" + response.msg +
+                                            "</b> <i class= 'alert-close mdi mdi-close float-right'></i ></div >");
+                                    }
+                                    $('#header-filled-reject-modal').modal('toggle');
+                                    $tr.remove();
+                                    $(".alert").delay(5000).fadeOut(800);
+                                    // $(".alert").fadeTo(5000, 2000).slideUp(5000, function () {
+                                    //     $(".alert").slideUp(5000);
+                                    // });
+
+                                }
+                            });
+                        }
+                    });
+
+
+                    $('.btn-action').on('click', function () {
+                        var candidate_name = $(this).parent().siblings(".applicant-name").text();
+                        var id = $(this).attr('data-id');
+                        var $tr = $("#" + id);
+                        var appr_reject = '<%= option.appr_reject %>';
+                        var appr_rejc_label = '<%= option.appr_rejc_label %>';
+                        var stage = '<%= option.stage %>';
+                        var status = $(this).attr('data-status');
+                        if (id) {
+                            $.ajax({
+                                type: 'POST',
+                                url: "shortlisted/change_status",
+                                data: { id: id, status: status, appr_reject: appr_reject, appr_rejc_label: appr_rejc_label, stage: stage },
+                                dataType: 'json',
+                                success: function (response) {
+                                    console.log(response.type);
+                                    if (response.type == "error") {
+                                        $('#msgs').html("<div class='alert alert-danger'>" + response.msg + "</div>");
+                                    } else {
+                                        $('#msgs').html("<div class='alert alert-success dismissible-alert' role='alert'><b>" + response.msg +
+                                            "</b> <i class= 'alert-close mdi mdi-close float-right'></i ></div >");
+                                    }
+                                    $('#header-filled-success-modal').modal('toggle');
+                                    $tr.remove();
+                                    $(".alert").delay(5000).fadeOut(800);
+                                    // $(".alert").fadeTo(5000, 2000).slideUp(5000, function () {
+                                    //     $(".alert").slideUp(5000);
+                                    // });
+
+                                }
+                            });
+                        }
+                    });
+
+
+
+
+
+                     $('#editdetail').on('submit', function (event) {
+
+                        $('.form-group').removeClass('has-error');
+                        $('.error').remove();
+                        $.ajax({
+                            type: 'POST',
+                            url: base_url + 'admin/applied_candidates/ajax_edit_submit_detail',
+                            data: new FormData(this), // our data object
+                            enctype: 'multipart/form-data',
+                            async: false,
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            dataType: 'json',
+                            beforeSend: function (xhr) {
+                                $('#book_schedule').attr('disabled', true);
+                            }
+                        }).done(function (response) {
+
+                            if (response.status == 1) {
+                                $('#editdetail')[0].reset();
+                                $('#assign_jobs_modal').modal('hide');
+
+                                $("input[name='kfc_token']").val(response.get_csrf_hash);
+                            }
+                            else if (response.status == 0) {
+
+                                if ((response.msg) && (response.msg != undefined))
+                                    $('#msg-group').append('<div class="error">' + response.msg + '</small>');
+                                else {
+                                    $.each(response.errors, function (key, value) {
+
+                                        $('#' + key + '-group').addClass('has-error'); // add the error class to show red input
+                                        $('#' + key + '-group').append('<small class="error">' + value + '</small>');
+
+                                    });
+
+                                }
+                                $("input[name='kfc_token']").val(response.errors.get_csrf_hash);
+                            }
+                        });
+                        event.preventDefault();
+                        // window.location.href = base_url + 'admin/applied_candidates';
+                        // console.log(base_url + 'admin/applied_candidates');
+                    });
+                });
+            </script>

@@ -12,9 +12,7 @@ exports.create = (req, res) => {
       });
       return;
     }
-
-   
-  
+ 
     // Create a Tutorial
     const vacancy = {
       category_name: req.body.category_name,

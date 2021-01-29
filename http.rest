@@ -17,7 +17,7 @@ POST http://localhost:4000/user HTTP/1.1
 Content-Type: application/json
 
 {
-    "name":"Shubhrant Srivastava",
+    "name": "Shubhrant Srivastava",
     "username":"shubh999",
     "email":"shubhrant999@gmail.com",
     "password":"shubh999",
@@ -25,7 +25,15 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:4000/user/role HTTP/1.1
+Content-Type: application/json
 
+{
+    "role_name":"admin",
+    "role_permissions":"{'dashboard':['index','add','edit','delete','change_status','download_csv','print'],'user':['index','add','edit','delete','change_status','download_csv','print'],'application/applied':['index','add','edit','delete','change_status','download_csv','print'],'application/shortlisted':['index','add','edit','delete','change_status','download_csv','print'],'application/interviewed':['index','add','edit','delete','change_status','download_csv','print'],'application/selected':['index','add','edit','delete','change_status','download_csv','print'],'application/rejected':['index','add','edit','delete','change_status','download_csv','print'],'application/onboarded':['index','add','edit','delete','change_status','download_csv','print'],'application/onhold':['index', 'add','edit','delete','change_status','download_csv','print']}"
+}
+
+###
 POST http://localhost:4000/api/user/login HTTP/1.1
 Content-Type: application/json
 

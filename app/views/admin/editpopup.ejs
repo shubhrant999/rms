@@ -1,0 +1,85 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="header-filled-edit-modal" style="display: none;"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form name="editdetail" id="editdetail">
+                <div class="modal-header bg-primary">
+                    <h3 class="modal-title text-white">Edit Detail</h3><button type="button" class="close text-white"
+                        data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <h6 class="text-primary mb-4"></h6> -->
+                    
+                    <!-- <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel
+                                    augue laoreet rutrum faucibus dolor auctor.</p> -->
+                    <!-- <hr> -->
+                    <input type="hidden" name="appl_id" value="<%= data.id %>">
+                    <div class="form-group">
+                        <label for="inputAadhar">Aadhar No.</label>
+                        <input type="text" value="<%= data.ntl_applicant.aadhaar %>" class="form-control" name="aadhaar" id="editdetail_aadhaar" placeholder="Aadhaar"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputDOB">DOB</label>
+                        <input type="text" class="form-control" value="<%= data.ntl_applicant.dob %>" name="dob" id="editdetail_dob" placeholder="Date of birth"
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputLocation">Location</label>
+                        <input type="text" class="form-control" value="<%= data.ntl_applicant.preferred_location %>" name="location" id="editdetail_location" placeholder="Location"
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPosition">Mobile</label>
+                        <input type="text" class="form-control" value="<%= data.ntl_applicant.phone %>" name="phone" id="editdetail_position" placeholder="Position"
+                            autocomplete="off">
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="submit" id="submit_edit" class="btn btn-primary btn-sm">Submit</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+       
+          
+       $('#editdetail').on('submit', function (event) {
+           event.preventDefault();           
+               $.ajax({
+                   type: 'POST',
+                   url: 'submit_edit_detail',
+                   data: $('#editdetail').serialize(), // our data object
+                   enctype: 'multipart/form-data',
+                   async: false,
+                   cache: false,
+                   processData: false,
+                   dataType: 'json',
+                   beforeSend: function (xhr) {
+                       $('#submit_edit').attr('disabled', true);
+                   }
+               }).done(function (response) {                  
+                  console.log(response)
+               });
+           event.preventDefault();
+           // window.location.href = base_url + 'admin/applied_candidates';
+           // console.log(base_url + 'admin/applied_candidates');
+       });
+
+
+    // $('#editdetail').on('submit', function (event) {
+    //     event.preventDefault()
+    //     $.ajax({
+    //         url: 'submit_edit_detail',
+    //         type: 'POST',
+    //         data: $('#editdetail').serialize(),
+    //         beforeSend: function (xhr) {
+    //             $('#submit_edit').attr('disabled', true);
+    //         }
+    //     }).done(response => {
+    //         console.log(response)
+    //     })
+    // });
+       
+</script>

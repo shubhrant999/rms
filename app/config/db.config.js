@@ -4,6 +4,7 @@ module.exports = {
     PASSWORD: "",
     DB: "neurotalent",
     dialect: "mysql",
+    logging: true, 
     pool: {
       max: 5,
       min: 0,

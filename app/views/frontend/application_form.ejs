@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Application Form || NeuroTalent</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/front/assets/css/bd-wizard.css">
+    <link rel="stylesheet" href="/front/assets/css/bootstrap-datetimepicker.css"
+        type="text/css" />
+</head>
+
+<body>
+    <main class="my-5">
+        <div class="container">
+            <form id="application_form" method="POST" action="/applicant/add">
+                <div id="wizard">
+                    <h3>
+                        <div class="media">
+                            <div class="bd-wizard-step-icon"><i class="mdi mdi-account-outline"></i></div>
+                            <div class="media-body">
+                                <div class="bd-wizard-step-title">Personal Details</div>
+                                <div class="bd-wizard-step-subtitle">Step 1</div>
+                            </div>
+                        </div>
+                    </h3>
+                    <section>
+                        <div class="content-wrapper">
+                            <h4 class="section-heading">Enter your Personal details </h4>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="fullname" class="sr-only">Full Name</label>
+                                    <input type="text" name="fullname" id="Fullname" class="form-control"
+                                        placeholder="Full Name" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="emailAddress" class="sr-only">Email</label>
+                                    <input type="text" name="emailAddress" id="emailAddress" class="form-control"
+                                        placeholder="Email Address" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="phoneNumber" class="sr-only">Phone Number</label>
+                                    <input type="number" name="phoneNumber" id="phoneNumber" class="form-control"
+                                        placeholder="Phone Number" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="aadharnumber" class="sr-only">Aadhaar No.</label>
+                                    <input type="number" name="aadharnumber" id="aadharnumber" class="form-control"
+                                        placeholder="Aadhar No." required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">                                
+                                    <label for="gender" class="sr-only">Sex/Gender</label>
+                                    <select class="form-control" id="gender" name="gender" required>
+                                        <option selected>Sex/Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>                              
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="start_date" class="sr-only">DOB</label>
+                                    <input  type="text" name="start_date" id="start_date" class="form-control" placeholder="Date of birth" required>
+                                </div>                            
+                            </div>
+
+                            
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="address" class="sr-only">Address</label>
+                                    <input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="city" class="sr-only">City</label>
+                                    <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="state" class="sr-only">State</label>
+                                    <input type="text" name="state" id="state" class="form-control" placeholder="State" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="country" class="sr-only">Country</label>
+                                    <input type="text" name="country" id="country" class="form-control" placeholder="Country" required>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <h3>
+                        <div class="media">
+                            <div class="bd-wizard-step-icon"><i class="mdi mdi-bank"></i></div>
+                            <div class="media-body">
+                                <div class="bd-wizard-step-title">Employ Details</div>
+                                <div class="bd-wizard-step-subtitle">Step 2</div>
+                            </div>
+                        </div>
+                    </h3>
+                    <section>
+                        <div class="content-wrapper">
+                            <h4 class="section-heading">Enter your Professional details </h4>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="preferred_location" class="sr-only">Preferred Job Location</label>
+                                    <input type="text" name="preferred_location" id="preferred_location" class="form-control"
+                                        placeholder="Preferred Job Location">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="qualification" class="sr-only">Highest Qualification</label>
+                                    <input type="text" name="qualification" id="qualification" class="form-control"
+                                        placeholder="Highest Qualification">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="total_experience" class="sr-only">Total Experience</label>
+                                    <input type="text" name="total_experience" id="total_experience" class="form-control"
+                                        placeholder="Total Experience">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="relavent_experience" class="sr-only">Relevant Experience</label>
+                                    <input type="email" name="relavent_experience" id="relavent_experience" class="form-control"
+                                        placeholder="Relevant Experience">
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="form-group col-md-6">
+                                    <div class="custom-file">
+                                        <input type="file" name="resume" class="form-control custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Resume</label>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </section>
+                    
+                    <h3>
+                        <div class="media">
+                            <div class="bd-wizard-step-icon"><i class="mdi mdi-emoticon-outline"></i></div>
+                            <div class="media-body">
+                                <div class="bd-wizard-step-title">Submit</div>
+                                <div class="bd-wizard-step-subtitle">Step 3</div>
+                            </div>
+                        </div>
+                    </h3>
+                    <section>
+                        <div class="content-wrapper">
+                            <h4 class="section-heading mb-5">Accept agreement and Submit</h4>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue"
+                                        checked>
+                                    I hereby declare that I had read all the <a href="#!">terms and conditions</a> and all
+                                    the details provided my me in this form are true.
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   
+    <script src="/front/assets/js/jquery.steps.min.js"></script>
+    <script src="/front/assets/js/bd-wizard.js"></script>
+    <script src="/front/assets/js/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    
+    <script src="/front/assets/js/bootstrap-datetimepicker.js"></script>
+    
+    
+    
+    
+    
+
+    
+
+</body>
+
+</html>

@@ -7,9 +7,8 @@ const db = require("../models");
 const Vacancy = db.vacancy;
 
 module.exports = app => {
-    var router = require("express").Router();
-    
-    router.get('/', [verifyLogin,checkPermission('index')], function(req, res, next) {
+    var router = require("express").Router();    
+    router.get('/dashboard', [verifyLogin,checkPermission('index')], function(req, res, next) {
         username = req.session.userdata.username;
         Vacancy.findAll({ where: null })
         .then(data => {        
@@ -21,15 +20,11 @@ module.exports = app => {
                 err.message || "Some error occurred while retrieving tutorials."
                 });
         });            
-    });  
-    
+    });      
     router.get('/edit', [verifyLogin,checkPermission()], function(req, res, next) {
         username = req.session.userdata.username;
         res.send(username);
         res.end();
     });
-    router.get('*', [verifyLogin,checkPermission()], function(req, res, next) {
-        res.end("you are on test page");
-    }); 
-    app.use('/dashboard', router);
+    app.use('/admin', router);
   };
