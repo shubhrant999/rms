@@ -93,7 +93,7 @@ app.get("/", (req, res) => {
 require("./app/routes/vacancy.routes")(app);
 require("./app/routes/users")(app);
 require("./app/routes/login")(app);
-require("./app/routes/applications")(app);
+// require("./app/routes/applications")(app);
 require("./app/routes/applicants")(app);
 require("./app/routes/exam")(app);
 require("./app/routes/dashboard")(app);
