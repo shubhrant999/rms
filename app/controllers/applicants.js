@@ -16,6 +16,9 @@ exports.add = (req, res) => {
         return;
     }
 
+    // var encryptedData = await helper.cryptData('shubhrant');
+    // var decryptData = await helper.compareCryptData('shubhran', encryptedData);
+
     const applicant_data = {
         name: req.body.fullname,
         email: req.body.emailAddress,
@@ -24,7 +27,6 @@ exports.add = (req, res) => {
         gender: req.body.gender,
         dob: moment(req.body.start_date, "MM-DD-YYYY"),
         address: req.body.address,
-        // age: helper.getAge(applicant_data.dob),
         city: req.body.city,
         state: req.body.state,
         country: req.body.country,

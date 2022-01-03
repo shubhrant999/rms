@@ -1,0 +1,168 @@
+<% 
+if(data.question){ 
+    next=data.next; prev=data.prev; 
+    $q=data.question.title ? data.question.title : '' ;
+    ques_image=data.question.ques_image ? data.question.ques_image : '' ; question_id=data.question.quest_id ?
+    data.question.quest_id : '' ; qs=data.question.options ? data.question.options:''; i=0; ques_count=data.ques_count ?
+    data.ques_count : 0; numeric=(data.curr_type_id==2) ? true : false ; case4=(data.curr_type_id==1) ? true : false ;
+    pre_sjt=(data.curr_type_id==3 || data.curr_type_id==4) ? true : false ; questions_val=data.questions_val ?
+    data.questions_val: '' ; %>
+    <span id="responseData" data-status="<%= data.status %>" data-timeTaking="<%= data.time_taking %>" data-timeTakePer="<%= data.time_take_per %>"></span>
+    
+    <form id="frm_hiring_ques" name="frm_hiring_ques">
+        <input type="hidden" id="cur_ques_id" value="<%=  data.quest_id; %>">
+        <input type="hidden" id="curr_type_id" value="<%= data.curr_type_id; %>">
+        <input type="hidden" id="stat" value="2">
+        <input type="hidden" id="temp_id" value="<%= data.temp_id; %>">
+
+
+        <section class="section hiring-ques">
+            <div class="container">
+                <header class="entry-header">
+                    <h1 class="title-lg">Hiring Assessment</h1>
+                    <p><span>Total Question:
+                            <%= data.ques_count %>
+                        </span>
+                        <%  if(data.quesArr){ 
+                            $j=1; 
+                            qval=data.quesArr;
+                            Object.keys(qval).forEach( function(k){ 
+                                curnt_dot = qval.qid == data.quest_id ? true : false;
+                                color_dot = get_color_dot(qval.stat);
+                                
+                                obj = qval ? { qid:qval[k].qid, opt:qval[k].opt, stat:qval[k].stat } : ''; %>
+                                <span id="color-dot <%= k %>" data-stat='<%= qval.stat %>'
+                                    data-ques='<%= obj %>' data-ques_id='<%= data.quest_id %>'
+                                    class="dots <%= color_dot %> "></span>                                
+                        <%  $j++; 
+                                });
+                            }   
+                        %>
+                    </p>
+                </header>
+
+                <div class="entry-container">
+                    <h2 class="title-xs">Question
+                        <%= data.question_num ? data.question_num : '' ; %>
+                    </h2>
+                    <p>
+                        <%= $q; %>
+                    </p>
+                    <% if(data.img && data.ques_image){ %>
+                        <p><img src="<%= data.ques_image; %>" alt=""></p>
+                        <% } %>
+                            <div class="options">
+                                <% if(qs){ Object.keys(qs).forEach( function(k){ checked=(data.curnt.opt &&
+                                    data.curnt.opt==qs[k] ) ? 'checked' : '' ; %>
+                                    <div class="btn-radio text-center">
+                                        <input type="radio" name="answer" value="<%= qs[k].key %>"
+                                            id="<%= 'answer'+i %>" <%=checked %> >
+
+                                        <label for="<%= 'answer'+i %>">
+                                            <%= qs[k].val %>
+                                        </label>
+                                    </div>
+                                    <% i++; }); } %>
+                            </div>
+                            <div class="text-center sbt-button pt-4">
+                                <% if(prev){ %>
+                                    <a href="javascript:void(0);" data-qid='<%= data.prev.qid %>' data-opt='<%= data.prev.opt %>' data-stat='<%= data.prev.stat %>'
+                                        data-ques_id='<%= data.quest_id %>'
+                                        class="nxt_prev_ques btn btn-grey btn-lg">Previous</a>
+                                    <% } if(next){ %>
+                                        <a href="javascript:void(0);" data-qid='<%= data.next.qid %>' data-opt='<%= data.next.opt %>' data-stat='<%= data.next.stat %>'
+                                            data-ques_id='<%= data.quest_id %>' id="next"
+                                            class="nxt_prev_ques btn btn-primary btn-lg next-btn">Next</a>
+                                    <% } %>
+                                            <a href="javascript:void();" data-ques='<%= data.next %>'
+                                                data-ques_id='<%= data.quest_id %>' id="mark"
+                                                class="nxt_prev_ques btn btn-secondary btn-lg">Attempt Later</a>
+                                            <% if( (!next) && (prev)){ %>
+                                                <a href="javascript:void(0);" id="submit"
+                                                    class=" btn btn-primary btn-lg">Submit</a>
+                                                <div id="msg-group"></div>
+                                                <% } %>
+                            </div>
+                </div>
+    </form>
+
+    <% } %>
+<script>
+    $(document).ready(function () {
+        $("input").click(function () {
+            var keyy = $(this).attr('name');
+            keyy = keyy.replace('[]', '');
+            $(this).closest('.form-group').removeClass('has-error');
+            $('#' + keyy + '-group').find('.error').remove();
+            $('#submitansw').removeAttr("disabled");
+        });
+
+        $(".nxt_prev_ques").click(function () {
+            option = $("input[name='answer']:checked").val();
+            ques_id = $("#cur_ques_id").val();
+            temp_id = $("#temp_id").val();
+            if ($(this).attr('id') == 'color-dot') {
+                stat = $(this).attr('data-stat');
+                $("#stat").val(stat);
+            }
+            if ($(this).attr('id') == 'next') {
+                if ((option !== 'undefined' && option !== undefined)) {
+                    stat = '<%= constants.ATTEMPTED %>';
+                } else {
+                    stat = '<%= constants.NOT_ATTEMPTED %>';
+                }
+                $("#stat").val(stat);
+            }
+            if ($(this).attr('id') == 'mark') {
+                stat = '<%= constants.MARK_FOR_REVIEW %>';
+                $("#stat").val(stat);
+                $("#color-dot" + ques_id).attr('class', 'dots yel-dots cunt_dot');
+            }
+            
+            obj = {
+               qid: $(this).attr('data-qid'),
+               opt: $(this).attr('data-opt'),
+               stat: $(this).attr('data-stat')               
+            }         
+            obj = JSON.stringify(obj);
+       
+            type_id = $("#curr_type_id").val();
+            stat = $("#stat").val();  
+            $.ajax({
+                type: "POST",
+                url: "ajax/hiring_questions",
+                data: { obj: obj, ques_id: ques_id, ajax_req: 'true', option: option, type_id: type_id, stat: stat, temp_id: temp_id },
+                success: function (response) {                    
+                    if (response) {
+                        $("#ques_sec").html(response);
+                    } else {
+                        alert("error");
+                    }
+                }
+            });
+        });
+
+        $("#submit").click(function(){
+            option = $("input[name='answer']:checked").val();
+            temp_id = $("#temp_id").val();
+            stat = $("#stat").val();
+            $.ajax({
+                type: 'POST',
+                url: 'ajax/hiring_submit',
+                data: { option: option, temp_id: temp_id, stat: stat},
+                success: function (response) {                    
+                    if (response.status == 2) {
+                        window.location.href = 'thank-you';
+                    }
+                    else if (response.status == 0) {
+                        var i = 0;
+                        if ((response.msg) && (response.msg != undefined)) {
+                            $('#msg-group').html('<div class="error">' + response.msg + '</small>');
+                        }
+                    }
+                }
+            });
+            // event.preventDefault();
+        });   
+    });    
+</script>

@@ -22,6 +22,11 @@ module.exports = app => {
     router.post("/shortlisted/change_status", application.change_status);
     router.all("/get_edit_detail", application.get_edit_detail);
     router.all("/submit_edit_detail", application.submit_edit_detail);
+
+    router.all("/get_comment_popup", application.get_comment_popup);
+
+
+    router.all("/submit_comment", application.submit_comment);
     
 
     router.all("/shortlisted", [verifyLogin, checkPermission('index')], application.shortlisted);

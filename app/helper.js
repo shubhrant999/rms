@@ -169,3 +169,37 @@ exports.compareCryptData = async function (str, hashstr) {
                     //     };
                     //     res.send(response);
                     // });
+
+exports.array_combine = async function (keys, values) {
+    const newArray = {}
+    let i = 0
+    if (typeof keys !== 'object') {
+        return false
+    }
+    if (typeof values !== 'object') {
+        return false
+    }
+    if (typeof keys.length !== 'number') {
+        return false
+    }
+    if (typeof values.length !== 'number') {
+        return false
+    }
+    if (!keys.length) {
+        return false
+    }
+    // number of elements does not match
+    if (keys.length !== values.length) {
+        return false
+    }
+    for (i = 0; i < keys.length; i++) {
+        newArray[keys[i]] = values[i]
+    }
+    return newArray
+}
+
+exports.array_column = async function (array, columnName) {
+    return array.map(function (value, index) {
+        return value[columnName];
+    })
+}

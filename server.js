@@ -6,7 +6,10 @@ const morgan = require('morgan');
 const cors = require("cors");
 const path = require("path");
 const dotenv = require('dotenv');
-const db = require("./app/models");
+
+const db = require("./app/models/sub-org");
+
+global.constants = require("./app/config/constants");
 // const { table } = require("console");
 const app = express();
 
@@ -31,7 +34,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 600000
+        expires: 3600000// 60*60*1000
     }
 }));
 
@@ -42,38 +45,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/assets'));
-
-// let reporter = function (type, ...rest) {
-//   // remote reporter logic goes here
-// };
-
-/* handle an uncaught exception & exit the process */
-// process.on('uncaughtException', function (err) {
-//   console.error((new Date).toUTCString() + ' uncaughtException:', err.message);
-//   console.error(err.stack);
-
-//   reporter("uncaughtException", (new Date).toUTCString(), err.message, err.stack);
-
-//   process.exit(1);
-// });
-
-/* handle an unhandled promise rejection */
-// process.on('unhandledRejection', function (reason, promise) {
-//   console.error('unhandled rejection:', reason.message || reason);
-//   reporter("uncaughtException", (new Date).toUTCString(), reason.message || reason);
-// })
-
-// const generate_uid = require("./app/routes/generate_uid");
-// const customer = require("./app/routes/customer");
-// app.use('/api/v1/generate_uid', generate_uid);
-// app.use('/api/v1/customer', customer);
-
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
 
 global.getAge = function (dateString) {
   var today = new Date();
@@ -87,6 +58,33 @@ global.getAge = function (dateString) {
 }
 
 
+global.get_color_dot = function (status) {
+  status = status ? status : 'blank';
+  switch (status) {
+    case (status == 'blank'):
+      cls = "grey-dot";
+      break;
+    case (status === '1' || status === 1):
+      cls = "grn-dots green-dot";
+      break;
+    case (status == 3):
+      cls = "nxt_prev_ques yel-dots yellow-dot";
+      break;
+    case (status == 2):
+      cls = "nxt_prev_ques red-dots red-dot";
+      break;
+    case (!status):
+      cls = "grey-dot";
+      break;
+    default:
+      cls = "grey-dot";
+  }
+  return cls;
+}
+
+
+
+
 app.get("/", (req, res) => {
   res.render('frontend/application_form', { title: 'Express' });
 });
@@ -97,7 +95,9 @@ require("./app/routes/users")(app);
 require("./app/routes/login")(app);
 require("./app/routes/applications")(app);
 require("./app/routes/applicants")(app);
+require("./app/routes/exam")(app);
 require("./app/routes/dashboard")(app);
+require("./app/routes/test")(app);
 
 app.use(function (req, res, next) {
   res.render('error', { title: 'Express' });

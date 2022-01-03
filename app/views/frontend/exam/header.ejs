@@ -1,0 +1,116 @@
+<script>
+    var base_url = 'https://careers.apollopharmacy.app/dev/';
+</script>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8" lang="en-US"><![endif]-->
+<!--[if !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+    <title>:::.Apollo.:::</title>
+    <!-- <link rel="shortcut icon" href="images/favicon.jpg" type="image/vnd.microsoft.icon"/> -->
+    <link rel="icon" href="https://careers.apollopharmacy.app/dev/assets/themes/image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/bootstrap-select.min.css">
+<link rel="stylesheet" href="css/datepicker.css">
+<link rel="stylesheet" href="css/style.css" type="text/css"> -->
+    <link type="text/css" rel="stylesheet"
+        href="https://careers.apollopharmacy.app/dev/assets/themes/ap_css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet"
+        href="https://careers.apollopharmacy.app/dev/assets/themes/ap_css/bootstrap-select.min.css">
+    <link type="text/css" rel="stylesheet"
+        href="https://careers.apollopharmacy.app/dev/assets/themes/ap_css/datepicker.css">
+    <link type="text/css" rel="stylesheet" href="https://careers.apollopharmacy.app/dev/assets/themes/ap_css/style.css">
+
+
+
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <!--[Middle Section]-->
+    <!--[Header]-->
+    <header style="display: "";" class="start_header" id="header">
+        <div class="container d-flex align-items-center">
+            <a class="navbar-brand" href="https://careers.apollopharmacy.app/dev/"><img
+                    src="https://careers.apollopharmacy.app/dev/assets/themes/images/apollo-logo.png" alt="Apollo"></a>
+            <div class="about-company ml-auto">
+                <!--<span class="search-sec"><a href="javascript:void();" class="search-item"><i class="fa fa-search"></i></a></span>-->
+                <a href="javascript:void();" class="btn btn-transparent">About Company</a>
+            </div>
+
+            <!-- 	<div class="countdown ml-auto">
+				<span id="app"></span>
+				<span class="user" data-toggle="tooltip" data-placement="top" title="Rahul Das">Welcome Rahul Das</span>
+		</div> -->
+        </div>
+    </header>
+    <header style="display: none;" class="ques_header" id="header">
+        <div class="container d-flex align-items-center">
+            <a class="navbar-brand" href="https://careers.apollopharmacy.app/dev/"><img
+                    src="https://careers.apollopharmacy.app/dev/assets/themes/images/apollo-logo.png" alt="Apollo"></a>
+
+            <!--   	<div class="timer">
+					  <div id="progress-per" class="progress" data-percentage="100">
+						<span class="progress-left">
+						  <span class="progress-bar"></span>
+						</span>
+						<span class="progress-right">
+						  <span class="progress-bar"></span>
+						</span>
+						<div class="progress-value">
+						  <div><strong id="time_taking">150</strong> min</div>
+						</div>
+					  </div>
+					</div> -->
+            <div class="countdown ml-auto">
+                <span id="app"></span>
+                <span class="user user-name" id="exam_can_name" data-toggle="tooltip" data-placement="top"
+                    title="">Welcome</span>
+            </div>
+        </div>
+    </header>
+
+
+    <!--[/Header]-->
+    <!-- Modal -->
+    <div class="modal fade video-modal" id="DemoVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <video controls controlsList="nodownload" id="apollovideo">
+                    <source src="https://careers.apollopharmacy.app/dev/assets/themes/video/ApolloVideo1.mp4"
+                        type="video/mp4">
+                    Your browser doesn't support HTML5 video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            /*$('#DemoVideo').on('shown.bs.modal', function () {
+                $('#apollovideo')[0].play();
+            });*/
+            $('#DemoVideo').on('hidden.bs.modal', function () {
+                $('#apollovideo')[0].pause();
+            });
+        });
+    </script>
+    <!--Header end here-->

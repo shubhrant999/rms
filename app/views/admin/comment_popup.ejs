@@ -1,0 +1,97 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="header-filled-comment-modal" style="display: none;"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form name="commentForm" id="commentForm">
+                <div class="modal-header bg-primary">
+                    <h3 class="modal-title text-white">Add Comment</h3><button type="button" class="close text-white"
+                        data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <h6 class="text-primary mb-4"></h6> -->
+
+                    <!-- <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel
+                                    augue laoreet rutrum faucibus dolor auctor.</p> -->
+                    <!-- <hr> -->
+                    <input type="hidden" name="appl_id" value="<%= data.id %>">
+                    <div class="form-group">
+                        <div class="col showcase_content_area">
+                            <label for="inputAadhar">Comment</label>
+                            <select class="form-control" name="comment" id="comment_options">
+                                <option value="-1">Choose comment </option>                            
+                                <% commentList.forEach( (comment)=> { %>
+                                    <option value="<%= comment %>"><%= comment %></option>
+                                <% }); %>
+                                <option value="other">Other</option>                           
+                            </select>
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group" id="comment_area">
+                        <label for="inputComment">Enter your comment</label>
+                        <textarea class="form-control" name="comment_area" id="inputComment" cols="12" rows="5"></textarea>
+                    </div>  
+                    
+                   
+                    
+                </div>
+                <div class="modal-footer"><button type="submit" id="submit_comment_btn"
+                        class="btn btn-primary btn-sm">Submit</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    $(document).ready(function () {
+      
+
+        $("#comment_area").hide();
+        $('#comment_options').on('change', function () {
+            if (this.value == 'other')
+            {
+                $("#comment_area").show();
+            }
+            else {
+                $("#comment_area").hide();
+            }
+        });
+    });
+
+
+    $('#commentForm').on('submit', function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: 'submit_comment',
+            data: $('#commentForm').serialize(), // our data object
+            enctype: 'multipart/form-data',
+            async: false,
+            cache: false,
+            processData: false,
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                $('#submit_comment_btn').attr('disabled', true);
+            }
+        }).done(function (response) {
+            if (response.type == 'success') {
+                $('#commentForm')[0].reset();
+                $('#header-filled-comment-modal').modal('hide');
+
+                $('#msgs').html("<div class='alert alert-success dismissible-alert' role='alert'><b>" + response.msg +
+                    "</b> <i class= 'alert-close mdi mdi-close float-right'></i ></div >");
+            } else {
+                $('#msgs').html("<div class='alert alert-danger'>" + response.msg + "</div>");
+            } 
+            $(".alert").delay(5000).fadeOut(800); 
+
+        });
+        event.preventDefault();
+    });
+
+
+    
+
+</script>

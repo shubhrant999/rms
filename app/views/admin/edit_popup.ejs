@@ -2,7 +2,7 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form name="editdetail" id="editdetail">
+            <form name="editForm" id="editForm">
                 <div class="modal-header bg-primary">
                     <h3 class="modal-title text-white">Edit Detail</h3><button type="button" class="close text-white"
                         data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -43,14 +43,13 @@
 </div>
 
 <script>
-       
-          
-       $('#editdetail').on('submit', function (event) {
+                 
+       $('#editForm').on('submit', function (event) {
            event.preventDefault();           
                $.ajax({
                    type: 'POST',
                    url: 'submit_edit_detail',
-                   data: $('#editdetail').serialize(), // our data object
+                   data: $('#editForm').serialize(), // our data object
                    enctype: 'multipart/form-data',
                    async: false,
                    cache: false,
@@ -60,7 +59,19 @@
                        $('#submit_edit').attr('disabled', true);
                    }
                }).done(function (response) {                  
-                  console.log(response)
+                    if (response.type == 'success') {
+                       $('#editForm')[0].reset();
+                       $('#header-filled-edit-modal').modal('hide');
+
+                       $('#msgs').html("<div class='alert alert-success dismissible-alert' role='alert'><b>" + response.msg +
+                           "</b> <i class= 'alert-close mdi mdi-close float-right'></i ></div >");
+                    }else{
+                        $('#msgs').html("<div class='alert alert-danger'>" + response.msg + "</div>");
+                    } 
+                    $(".alert").delay(5000).fadeOut(800); 
+                       
+
+
                });
            event.preventDefault();
            // window.location.href = base_url + 'admin/applied_candidates';
@@ -68,12 +79,12 @@
        });
 
 
-    // $('#editdetail').on('submit', function (event) {
+    // $('#editForm').on('submit', function (event) {
     //     event.preventDefault()
     //     $.ajax({
     //         url: 'submit_edit_detail',
     //         type: 'POST',
-    //         data: $('#editdetail').serialize(),
+    //         data: $('#editForm').serialize(),
     //         beforeSend: function (xhr) {
     //             $('#submit_edit').attr('disabled', true);
     //         }
